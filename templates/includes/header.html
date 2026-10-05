@@ -1,0 +1,23 @@
+{% load static %}
+<p>
+  <img src="{% static 'img/logo.png' %}" alt="Логотип" width="100">
+</p>
+
+{% with request.resolver_match.view_name as view_name %}
+<nav>
+  <ul>
+    <li>
+      <a class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}"
+         href="{% url 'homepage:index' %}">Главная</a>
+    </li>
+    <li>
+      <a class="nav-link {% if view_name == 'ice_cream:ice_cream_list' %}active{% endif %}"
+         href="{% url 'ice_cream:ice_cream_list' %}">Список мороженого</a>
+    </li>
+    <li>
+      <a class="nav-link {% if view_name == 'about:about' %}active{% endif %}"
+         href="{% url 'about:about' %}">О проекте</a>
+    </li>
+  </ul>
+</nav>
+{% endwith %}

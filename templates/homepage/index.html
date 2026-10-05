@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Анфиса для друзей. Главная{% endblock %}
+
+{% block content %}
+  <h1>Главная страница</h1>
+
+  <ul>
+    {% for ice_cream in ice_cream_list %}
+      <li>
+        <a href="{% url 'ice_cream:ice_cream_detail' ice_cream.id %}">
+          {{ ice_cream.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

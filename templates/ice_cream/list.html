@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Анфиса для друзей. Список мороженого{% endblock %}
+
+{% block content %}
+  <h1>Каталог мороженого</h1>
+  <ul>
+    {% for ice_cream in ice_cream_catalog %}
+      <li>
+        <h3>
+          <a href="{% url 'ice_cream:ice_cream_detail' ice_cream.id %}">
+            {{ ice_cream.title }}
+          </a>
+        </h3>
+        <p>{{ ice_cream.description }}</p>
+        <p><strong>Категория:</strong> {{ ice_cream.category.title }}</p>
+        {% if ice_cream.wrapper %}
+          <p><strong>Обёртка:</strong> {{ ice_cream.wrapper.title }}</p>
+        {% endif %}
+        {% if ice_cream.toppings.all %}
+          <p><strong>Топпинги:</strong>
+            {% for topping in ice_cream.toppings.all %}
+              {{ topping.title }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+        {% endif %}
+      </li>
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endblock %}
