@@ -1,13 +1,12 @@
 from django.shortcuts import render
-
 from ice_cream.models import IceCream
-
 
 def index(request):
     template_name = 'homepage/index.html'
-    ice_cream_list = IceCream.objects.values(
-        'id', 'title', 'description'
-    ).filter(is_published=True)
+    ice_cream_list = IceCream.objects.filter(
+    is_published=True,
+    is_on_main=True,
+).select_related('wrapper', 'category').order_by('title')
     context = {
         'ice_cream_list': ice_cream_list,
     }

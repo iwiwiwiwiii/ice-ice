@@ -1,19 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Анфиса для друзей. {{ ice_cream.title }}{% endblock %}
 
 {% block content %}
   <h1>{{ ice_cream.title }}</h1>
   <p>{{ ice_cream.description }}</p>
-  <p><strong>Категория:</strong> {{ ice_cream.category.title }}</p>
-  {% if ice_cream.wrapper %}
-    <p><strong>Обёртка:</strong> {{ ice_cream.wrapper.title }}</p>
-  {% endif %}
-  {% if ice_cream.toppings.all %}
-    <p><strong>Топпинги:</strong>
-      {% for topping in ice_cream.toppings.all %}
-        {{ topping.title }}{% if not forloop.last %}, {% endif %}
-      {% endfor %}
-    </p>
-  {% endif %}
+  
+  <img src="{% static 'img/image_holder.png' %}" alt="Мороженое">
+  
+  ...
 {% endblock %}
